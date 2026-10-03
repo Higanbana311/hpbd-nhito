@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6efe2" />
+    <title>Một chiếc hộp nhỏ dành cho cậu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&family=Great+Vibes&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="dust" aria-hidden="true"></div>
+    <button id="music-toggle" class="music-toggle" aria-label="Bật nhạc nền" title="Bật nhạc nền">
+      <span class="music-icon">♪</span><span class="music-label">Bật nhạc</span>
+    </button>
+    <audio id="music" loop preload="none">
+      <!-- Thay src bằng file nhạc của bạn, ví dụ: src="assets/your-song.mp3" -->
+    </audio>
+
+    <main>
+      <section class="scene active" id="scene-envelope" aria-labelledby="intro-title">
+        <div class="intro-copy">
+          <p class="eyebrow">for someone special</p>
+          <h1 id="intro-title">Tớ có một thứ<br />muốn gửi cậu…</h1>
+        </div>
+        <button class="envelope-wrap" id="open-envelope" aria-label="Mở thư">
+          <span class="envelope">
+            <span class="envelope-flap"></span>
+            <span class="letter-peek">♡</span>
+          </span>
+        </button>
+        <button class="primary-button" id="open-letter">Mở thư <span>♡</span></button>
+        <p class="hint">chạm nhẹ vào phong bì nhé</p>
+      </section>
+
+      <section class="scene" id="scene-box" aria-labelledby="box-title">
+        <div class="scene-copy">
+          <p class="script">Nhưng trước khi đọc…</p>
+          <h2 id="box-title">cậu phải tìm được nó.</h2>
+        </div>
+        <button class="gift-wrap" id="open-box" aria-label="Mở chiếc hộp nhỏ">
+          <span class="gift-box"><i></i><b></b><em></em></span>
+        </button>
+        <button class="primary-button" id="try-box">Mở thử xem?</button>
+      </section>
+
+      <section class="scene" id="scene-memories" aria-labelledby="memory-title">
+        <div class="scene-copy memory-heading">
+          <p class="eyebrow">những mảnh nhỏ</p>
+          <h2 id="memory-title">Có vài điều tớ muốn cậu biết.</h2>
+          <p class="instruction">Mở từng mảnh nhé ✦</p>
+        </div>
+        <div class="memory-grid">
+          <button class="memory-card" data-memory="Có những ngày chẳng có gì đặc biệt, nhưng vì có cậu nên tự nhiên lại thấy vui."><span>01</span><strong>Một điều tớ nhớ</strong><i>+</i></button>
+          <button class="memory-card" data-memory="Tớ thích cách cậu làm mọi thứ xung quanh trở nên ấm áp hơn, theo một cách rất riêng."><span>02</span><strong>Một điều tớ thích</strong><i>+</i></button>
+          <button class="memory-card" data-memory="Dù cậu có lựa chọn như nào đi chăng nữa, hãy luôn biết rằng: tớ luôn ủng hộ cậu."><span>03</span><strong>Một điều tớ muốn nói</strong><i>+</i></button>
+          <button class="memory-card" data-memory="Điều đặc biệt nhất là: có cậu ở đây, trong một phần rất đẹp của những ngày tớ đã đi qua."><span>04</span><strong>Một điều đặc biệt</strong><i>+</i></button>
+        </div>
+        <button class="continue-button hidden" id="to-key">Còn một thứ cuối cùng… <span>→</span></button>
+      </section>
+
+      <section class="scene" id="scene-key" aria-labelledby="key-title">
+        <div class="scene-copy">
+          <p class="script">Có một nơi tớ đã giấu</p>
+          <h2 id="key-title">điều muốn nói.</h2>
+        </div>
+        <button class="key-button" id="open-key" aria-label="Mở khóa điều bí mật"><span class="key">⚿</span></button>
+        <p class="hint">chạm vào chiếc chìa khóa</p>
+      </section>
+
+      <section class="scene" id="scene-album" aria-labelledby="album-title">
+        <div class="scene-copy album-heading">
+          <p class="eyebrow">a little album</p>
+          <h2 id="album-title">Lật từng trang nhé.</h2>
+        </div>
+        <div class="book-shell">
+          <button class="book" id="book" aria-label="Lật trang album">
+            <span class="book-page cover"><small>những khoảnh khắc</small><strong>của cậu</strong><i>♡</i></span>
+            <span class="book-page photo-page"><span class="photo-placeholder photo-one"><img src="assets/a1.jpg" alt="Khoảnh khắc 01" /></span><em>Một khoảnh khắc mà tớ rất thích.</em></span>
+            <span class="book-page photo-page"><span class="photo-placeholder photo-two"><img src="assets/a2.jpg" alt="Khoảnh khắc 02" /></span><em>Một phiên bản rất đáng yêu của cậu.</em></span>
+            <span class="book-page photo-page"><span class="photo-placeholder photo-three"><img src="assets/a3.jpg" alt="Khoảnh khắc 03" /></span><em>Và một người mà tớ thật sự trân trọng.</em></span>
+            <span class="book-page last-page"><small>còn một trang cuối</small><strong>Ready?</strong><i>→</i></span>
+          </button>
+        </div>
+        <p class="hint" id="book-hint">chạm để lật trang</p>
+      </section>
+
+      <section class="scene" id="scene-letter" aria-labelledby="letter-title">
+        <div class="letter-paper">
+          <div class="letter-image"><img src="assets/a4.jpg" alt="Người đặc biệt trong lá thư" /></div>
+          <div class="letter-content">
+            <p class="letter-to">Gửi Nhi tồ,</p>
+            <div class="typed-text" id="typed-text" aria-live="polite"></div>
+            <p class="signature">— <em>Vinh điệp zai:3</em></p>
+          </div>
+        </div>
+        <button id="celebrate" class="celebrate hidden">Psst… nhìn lên góc phải đi. <span>✦</span></button>
+      </section>
+    </main>
+    <div class="confetti" id="confetti" aria-hidden="true"></div>
+    <div class="toast" id="toast"></div>
+    <script src="script.js"></script>
+  </body>
+</html>

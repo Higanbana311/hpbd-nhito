@@ -1,0 +1,611 @@
+:root {
+  --cream: #f6efe2;
+  --paper: #fffaf0;
+  --ink: #57483d;
+  --soft: #b99078;
+  --rose: #d6a79b;
+  --gold: #d5a65b;
+  --shadow: 0 18px 45px #8d6f5224;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: "Be Vietnam Pro", sans-serif;
+  overflow: hidden;
+}
+.dust,
+.dust:after {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+.dust {
+  background-image:
+    radial-gradient(#b68c6338 1px, transparent 1.5px),
+    radial-gradient(#fff 1px, transparent 1.5px);
+  background-size:
+    62px 59px,
+    97px 83px;
+  background-position:
+    0 0,
+    25px 20px;
+  opacity: 0.65;
+  animation: float 12s ease-in-out infinite;
+}
+.scene {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 20px;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.98);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease,
+    visibility 0.7s;
+}
+.scene.active {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+.eyebrow {
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: #a78369;
+  margin: 0 0 12px;
+}
+.intro-copy,
+.scene-copy {
+  text-align: center;
+}
+.intro-copy h1,
+h2 {
+  font-family: "DM Serif Display", serif;
+  font-weight: 400;
+  line-height: 1.13;
+  margin: 0;
+  font-size: clamp(30px, 6vw, 47px);
+}
+.script {
+  font-family: "Great Vibes", cursive;
+  color: var(--rose);
+  font-size: clamp(30px, 5vw, 43px);
+  margin: 0 0 -4px;
+}
+.primary-button,
+.continue-button,
+.celebrate {
+  border: 0;
+  background: var(--ink);
+  color: #fffaf2;
+  padding: 14px 25px;
+  border-radius: 999px;
+  font: 500 13px "Be Vietnam Pro";
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  box-shadow: 0 7px 16px #5c443128;
+  transition: 0.25s;
+}
+.primary-button:hover,
+.continue-button:hover,
+.celebrate:hover {
+  transform: translateY(-3px);
+  background: #725b4b;
+}
+.primary-button span {
+  color: #ffc6c0;
+  margin-left: 6px;
+}
+.hint {
+  font-size: 11px;
+  color: #a88c78;
+  letter-spacing: 0.4px;
+  margin: 18px 0 0;
+}
+.envelope-wrap {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  margin: 38px 0 15px;
+  padding: 12px;
+}
+.envelope {
+  position: relative;
+  display: block;
+  width: 205px;
+  height: 134px;
+  background: #dba69b;
+  border-radius: 3px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.envelope:after,
+.envelope:before {
+  content: "";
+  position: absolute;
+  width: 145px;
+  height: 145px;
+  background: #e9b9ad;
+  transform: rotate(45deg);
+  bottom: -105px;
+}
+.envelope:before {
+  left: -15px;
+}
+.envelope:after {
+  right: -15px;
+}
+.envelope-flap {
+  position: absolute;
+  z-index: 4;
+  width: 145px;
+  height: 145px;
+  left: 30px;
+  top: -103px;
+  background: #e5b2a7;
+  transform: rotate(45deg);
+  transform-origin: bottom;
+  transition: 0.7s;
+}
+.letter-peek {
+  position: absolute;
+  z-index: 2;
+  left: 20px;
+  top: 13px;
+  width: 165px;
+  height: 104px;
+  background: var(--paper);
+  padding-top: 22px;
+  font: 30px "DM Serif Display";
+  color: var(--rose);
+  transition: 0.7s;
+}
+.envelope-wrap.open .envelope-flap {
+  transform: rotate(45deg) translate(-40px, -40px);
+}
+.envelope-wrap.open .letter-peek {
+  transform: translateY(-45px);
+}
+.gift-wrap {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  margin: 35px 0 19px;
+  padding: 18px;
+}
+.gift-box {
+  position: relative;
+  display: block;
+  width: 142px;
+  height: 112px;
+  background: #bd8c76;
+  box-shadow: var(--shadow);
+  border-radius: 2px;
+}
+.gift-box:before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 60px;
+  width: 20px;
+  background: #edc9b2;
+}
+.gift-box i {
+  position: absolute;
+  left: -8px;
+  top: -21px;
+  width: 158px;
+  height: 28px;
+  background: #dba28c;
+  border-radius: 3px;
+  transition: 0.55s;
+}
+.gift-box i:after {
+  content: "";
+  position: absolute;
+  left: 64px;
+  top: 0;
+  width: 20px;
+  height: 28px;
+  background: #f3d6bb;
+}
+.gift-box b,
+.gift-box em {
+  position: absolute;
+  z-index: -1;
+  width: 42px;
+  height: 40px;
+  border: 8px solid #edc9b2;
+  border-radius: 50% 50% 0 50%;
+  top: -48px;
+}
+.gift-box b {
+  left: 29px;
+  transform: rotate(-23deg);
+}
+.gift-box em {
+  right: 29px;
+  transform: scaleX(-1) rotate(-23deg);
+}
+.gift-wrap.open i {
+  transform: translateY(-34px) rotate(-7deg);
+}
+.memory-heading {
+  margin-bottom: 25px;
+}
+.memory-heading h2 {
+  font-size: clamp(27px, 5vw, 38px);
+}
+.instruction {
+  font-size: 12px;
+  color: #a88c78;
+  margin: 14px 0 0;
+}
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(145px, 205px));
+  gap: 12px;
+  width: min(100%, 430px);
+}
+.memory-card {
+  min-height: 142px;
+  border: 1px solid #e5d5c1;
+  background: #fffbf3;
+  border-radius: 13px;
+  padding: 18px;
+  text-align: left;
+  color: var(--ink);
+  cursor: pointer;
+  box-shadow: 0 7px 17px #967b5b13;
+  transition: 0.35s;
+  position: relative;
+}
+.memory-card:hover {
+  transform: translateY(-4px);
+}
+.memory-card span {
+  display: block;
+  color: #c69b79;
+  font: 19px "DM Serif Display";
+}
+.memory-card strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.45;
+  margin-top: 22px;
+  max-width: 105px;
+}
+.memory-card i {
+  position: absolute;
+  right: 15px;
+  bottom: 12px;
+  font: 20px "DM Serif Display";
+  color: #c69b79;
+}
+.memory-card.open {
+  background: #e8c8b8;
+  transform: none;
+}
+.memory-card.open span,
+.memory-card.open strong {
+  display: none;
+}
+.memory-card.open:after {
+  content: attr(data-memory);
+  font: italic 14px/1.55 "DM Serif Display";
+  display: block;
+}
+.memory-card.open i {
+  display: none;
+}
+.continue-button {
+  margin-top: 25px;
+  background: transparent;
+  border: 1px solid #a8876f;
+  color: var(--ink);
+  box-shadow: none;
+}
+.hidden {
+  opacity: 0 !important;
+  pointer-events: none;
+  transform: translateY(8px) !important;
+}
+.key-button {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  margin: 35px 0 0;
+}
+.key {
+  display: block;
+  font-size: 126px;
+  line-height: 0.8;
+  color: var(--gold);
+  transform: rotate(-41deg);
+  filter: drop-shadow(0 12px 13px #a0733140);
+  transition: 0.5s;
+}
+.key-button:hover .key {
+  transform: rotate(-28deg) scale(1.08);
+}
+.album-heading {
+  margin-bottom: 19px;
+}
+.book-shell {
+  perspective: 1300px;
+}
+.book {
+  position: relative;
+  border: 0;
+  background: transparent;
+  width: 268px;
+  height: 345px;
+  cursor: pointer;
+  padding: 0;
+  transform-style: preserve-3d;
+}
+.book:before {
+  content: "";
+  position: absolute;
+  inset: 8px -7px -5px 8px;
+  background: #b68a6e;
+  border-radius: 3px;
+  box-shadow: var(--shadow);
+}
+.book-page {
+  position: absolute;
+  inset: 0;
+  background: #fffaf1;
+  border-radius: 3px;
+  padding: 28px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 9px 0 17px #654c3014;
+  transition:
+    transform 0.8s cubic-bezier(0.63, 0.06, 0.34, 0.96),
+    opacity 0.2s;
+  backface-visibility: hidden;
+  transform-origin: left center;
+}
+.cover {
+  z-index: 5;
+  background: #ba8d72;
+  color: #fff8ec;
+}
+.cover small,
+.last-page small {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.cover strong,
+.last-page strong {
+  font: 39px/1 "Great Vibes";
+  font-weight: 400;
+  margin: 17px 0;
+}
+.cover i {
+  font: 25px "DM Serif Display";
+}
+.photo-page {
+  z-index: 4;
+}
+.book-page:nth-child(2) {
+  z-index: 4;
+}
+.book-page:nth-child(3) {
+  z-index: 3;
+}
+.book-page:nth-child(4) {
+  z-index: 2;
+}
+.photo-placeholder {
+  width: 185px;
+  height: 194px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 7px solid white;
+  box-shadow: 0 5px 15px #67533c25;
+  color: #fff9f0;
+  font-size: 11px;
+  letter-spacing: 1px;
+  overflow: hidden;
+}
+.photo-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.photo-one {
+  background: linear-gradient(135deg, #c9a58c, #e5c3a9);
+}
+.photo-two {
+  background: linear-gradient(135deg, #d7b4a5, #a98173);
+}
+.photo-three {
+  background: linear-gradient(135deg, #b8a481, #e3cda7);
+}
+.photo-page em {
+  font: italic 16px/1.45 "DM Serif Display";
+  margin-top: 20px;
+}
+.last-page {
+  z-index: 1;
+  background: #f7ead8;
+}
+.last-page i {
+  font: 23px "DM Serif Display";
+}
+.book.page-1 .cover,
+.book.page-2 .cover,
+.book.page-3 .cover,
+.book.page-4 .cover {
+  transform: rotateY(-180deg);
+}
+.book.page-2 .photo-page:nth-child(2),
+.book.page-3 .photo-page:nth-child(2),
+.book.page-4 .photo-page:nth-child(2) {
+  transform: rotateY(-180deg);
+}
+.book.page-3 .photo-page:nth-child(3),
+.book.page-4 .photo-page:nth-child(3) {
+  transform: rotateY(-180deg);
+}
+.book.page-4 .photo-page:nth-child(4) {
+  transform: rotateY(-180deg);
+}
+.letter-paper {
+  width: min(92vw, 610px);
+  max-height: 88vh;
+  overflow: auto;
+  background: var(--paper);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  border-radius: 2px;
+  display: grid;
+  grid-template-columns: 175px 1fr;
+  gap: 28px;
+  transform: rotate(-1deg);
+  opacity: 0;
+  transition: 0.9s 0.2s;
+}
+.active .letter-paper {
+  opacity: 1;
+  transform: rotate(-1deg) translateY(0);
+}
+.letter-image {
+  height: 220px;
+  background: linear-gradient(145deg, #dbb7a1, #b88978);
+  color: #fff8ef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 1px;
+  line-height: 1.6;
+  box-shadow: 0 5px 15px #6d4d3a2e;
+}
+.letter-content {
+  font: 16px/1.66 "DM Serif Display";
+}
+.letter-to {
+  font: 35px "Great Vibes";
+  color: #bd877a;
+  margin: 0 0 13px;
+}
+.typed-text p {
+  margin: 0 0 11px;
+}
+.signature {
+  font: 22px "Great Vibes";
+  color: #7a6052;
+  margin: 24px 0 0;
+}
+.celebrate {
+  position: fixed;
+  right: 26px;
+  top: 22px;
+  background: #8d624d;
+  font-size: 11px;
+}
+.confetti {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.confetti i {
+  position: absolute;
+  width: 8px;
+  height: 12px;
+  top: -20px;
+  animation: fall 3.8s linear forwards;
+}
+.toast {
+  position: fixed;
+  bottom: 22px;
+  left: 50%;
+  transform: translate(-50%, 15px);
+  padding: 10px 14px;
+  background: #674c3e;
+  color: #fffaf1;
+  border-radius: 99px;
+  font-size: 11px;
+  opacity: 0;
+  transition: 0.3s;
+}
+@keyframes float {
+  50% {
+    transform: translateY(-12px);
+  }
+}
+@keyframes fall {
+  to {
+    transform: translate(var(--x), 110vh) rotate(620deg);
+    opacity: 0;
+  }
+}
+@media (max-width: 520px) {
+  .memory-grid {
+    gap: 9px;
+  }
+  .memory-card {
+    min-height: 126px;
+    padding: 14px;
+  }
+  .memory-card.open:after {
+    font-size: 13px;
+  }
+  .letter-paper {
+    grid-template-columns: 1fr;
+    gap: 17px;
+    padding: 17px;
+    max-height: 83vh;
+  }
+  .letter-image {
+    height: 145px;
+  }
+  .letter-content {
+    font-size: 15px;
+  }
+  .celebrate {
+    right: 12px;
+    top: 14px;
+  }
+  .book {
+    transform: scale(0.9);
+    margin: -17px 0;
+  }
+  .album-heading {
+    margin-bottom: 3px;
+  }
+}
+
+.photo-placeholder {
+  overflow: hidden;
+}
+
+.photo-placeholder img,
+.letter-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
