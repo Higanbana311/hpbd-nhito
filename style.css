@@ -18,6 +18,31 @@ body {
   font-family: "Be Vietnam Pro", sans-serif;
   overflow: hidden;
 }
+.music-toggle {
+  position: fixed;
+  z-index: 20;
+  top: 18px;
+  right: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid #d9c5ad;
+  border-radius: 999px;
+  padding: 9px 13px;
+  background: #fffaf0e8;
+  color: var(--ink);
+  font: 500 12px "Be Vietnam Pro", sans-serif;
+  cursor: pointer;
+  box-shadow: 0 5px 16px #5c44311f;
+}
+.music-toggle.playing {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fffaf0;
+}
+.music-icon {
+  font: 20px/1 "DM Serif Display", serif;
+}
 .dust,
 .dust:after {
   position: fixed;
@@ -540,6 +565,7 @@ h2 {
 }
 .toast {
   position: fixed;
+  z-index: 30;
   bottom: 22px;
   left: 50%;
   transform: translate(-50%, 15px);

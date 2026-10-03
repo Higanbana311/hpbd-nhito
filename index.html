@@ -15,8 +15,9 @@
     <button id="music-toggle" class="music-toggle" aria-label="Bật nhạc nền" title="Bật nhạc nền">
       <span class="music-icon">♪</span><span class="music-label">Bật nhạc</span>
     </button>
-    <audio id="music" loop preload="none">
-      <!-- Thay src bằng file nhạc của bạn, ví dụ: src="assets/your-song.mp3" -->
+    <!-- Đổi đường dẫn này nếu bạn dùng một file nhạc khác. -->
+    <audio id="music" loop preload="metadata">
+      <source src="hpbd.mp3" type="audio/mpeg" />
     </audio>
 
     <main>

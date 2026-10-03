@@ -81,13 +81,33 @@ $('#celebrate').addEventListener('click', () => {
 });
 
 const music = $('#music');
-$('#music-toggle').addEventListener('click', () => {
-  if (!music.src || music.src.endsWith('/')) {
-    $('#toast').textContent = 'Thêm file nhạc vào thẻ audio trước nhé ♫';
-    $('#toast').style.opacity = 1;
-    setTimeout(() => $('#toast').style.opacity = 0, 2600);
+const musicToggle = $('#music-toggle');
+const showToast = (message) => {
+  $('#toast').textContent = message;
+  $('#toast').style.opacity = 1;
+  setTimeout(() => $('#toast').style.opacity = 0, 2600);
+};
+
+musicToggle.addEventListener('click', async () => {
+  if (!music.querySelector('source')?.src) {
+    showToast('Chưa tìm thấy file nhạc nhé ♫');
     return;
   }
-  if (music.paused) { music.play(); $('#music-toggle').classList.add('playing'); $('.music-label').textContent = 'Tắt nhạc'; }
-  else { music.pause(); $('#music-toggle').classList.remove('playing'); $('.music-label').textContent = 'Bật nhạc'; }
+
+  if (music.paused) {
+    try {
+      await music.play();
+      musicToggle.classList.add('playing');
+      $('.music-label').textContent = 'Tắt nhạc';
+      musicToggle.setAttribute('aria-label', 'Tắt nhạc nền');
+    } catch (error) {
+      console.error('Không thể phát nhạc:', error);
+      showToast('Không thể phát nhạc. Hãy mở trang qua Live Server rồi thử lại nhé.');
+    }
+  } else {
+    music.pause();
+    musicToggle.classList.remove('playing');
+    $('.music-label').textContent = 'Bật nhạc';
+    musicToggle.setAttribute('aria-label', 'Bật nhạc nền');
+  }
 });
